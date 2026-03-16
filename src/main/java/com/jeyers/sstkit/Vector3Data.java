@@ -1,5 +1,7 @@
 package com.jeyers.sstkit;
 
+import static java.io.File.separator;
+
 public class Vector3Data {
     public double x;
     public double y;
@@ -16,5 +18,9 @@ public class Vector3Data {
         in.y = Math.round(y);
         in.z = Math.round(z);
         return in;
+    }
+
+    public static String vector3ToString(Vector3Data in, String separator) {
+        return in.x + separator + in.y + separator + in.z;
     }
 }

@@ -14,6 +14,8 @@ import org.bukkit.Location;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
+import static com.jeyers.sstkit.Vector2Data.vector2ToString;
+import static com.jeyers.sstkit.Vector3Data.vector3ToString;
 
 
 public class ReadPTransformCommand implements CommandExecutor {
@@ -28,11 +30,11 @@ public class ReadPTransformCommand implements CommandExecutor {
         Player player = Bukkit.getPlayer(args[0]);
         if (player != null) {
             Location loc = player.getLocation();
-            Vector3Data rot = new Vector3Data(player.getYaw(), player.getPitch(), 0);
             Vector3Data pos = new Vector3Data(loc.getX(), loc.getY(), loc.getZ());
+            Vector2Data rot = new Vector2Data(player.getYaw(), player.getPitch());
             if (args.length == 1) {
                 pos.vector3Round(pos);
-                rot.vector3Round(rot);
+                rot.vector2Round(rot);
             } else {
                 if (!Objects.equals(args[1], "exact")) {
                     sender.sendMessage("§cInvalid argument");
@@ -40,16 +42,17 @@ public class ReadPTransformCommand implements CommandExecutor {
                 }
             }
             DecimalFormat formatter = new DecimalFormat("#.######");
+
             Component posMessage = Component.text("Player " + args[0] + " position: ")
-                    .append(Component.text("[" + formatter.format(pos.x) + ", " + formatter.format(pos.y) + ", " + formatter.format(pos.z) + "]")
+                    .append(Component.text("[" + vector3ToString(pos, ", ") + "]")
                             .color(NamedTextColor.GREEN)
                             .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
-                            .clickEvent(ClickEvent.copyToClipboard(pos.x + " " + pos.y + " " + pos.z)));
+                            .clickEvent(ClickEvent.copyToClipboard(vector3ToString(pos, " "))));
             Component rotMessage = Component.text("Player " + args[0] + " rotation: ")
-                    .append(Component.text("[" + formatter.format(rot.x) + ", " + formatter.format(rot.y) + "]")
+                    .append(Component.text("[" + vector2ToString(rot, ", ") + "]")
                             .color(NamedTextColor.GREEN)
                             .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
-                            .clickEvent(ClickEvent.copyToClipboard(rot.x + " " + rot.y)));
+                            .clickEvent(ClickEvent.copyToClipboard(vector2ToString(rot, " "))));
             player.sendMessage(posMessage);
             player.sendMessage(rotMessage);
         } else {
