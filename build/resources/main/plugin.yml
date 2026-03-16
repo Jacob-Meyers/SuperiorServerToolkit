@@ -1,0 +1,19 @@
+name: SuperiorServerToolkit
+version: '1.0'
+main: com.jeyers.sstkit.SupToolkit
+api-version: '1.21'
+authors: [ Jacob Meyers (TeamJEM) ]
+website: https://modrinth.com/user/TeamJEM
+permissions:
+  op.permission.node:
+    description: "Operator Status permission node."
+    default: op
+    children:
+      op.permission.node.child: true
+commands:
+  readptransform:
+    description: Reads player position
+    aliases: [readptransform, playertransform]
+    usage: /<command> args
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
