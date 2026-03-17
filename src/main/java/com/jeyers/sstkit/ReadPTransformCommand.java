@@ -1,5 +1,6 @@
 package com.jeyers.sstkit;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,8 +11,8 @@ import net.kyori.adventure.text.event.HoverEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
+import org.jspecify.annotations.NonNull;
 
-import java.text.DecimalFormat;
 import java.util.Objects;
 
 import static com.jeyers.sstkit.Vector2Data.vector2ToString;
@@ -20,18 +21,19 @@ import static com.jeyers.sstkit.Vector3Data.vector3ToString;
 
 public class ReadPTransformCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
         if (args.length < 1) {
             sender.sendMessage("§cInvalid argument");
             return true;
         }
 
-        //sender.sendMessage("You ran /readppos!");
-        Player player = Bukkit.getPlayer(args[0]);
-        if (player != null) {
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(args[0]);
+        if (offlinePlayer.isOnline()) {
+            Player player = Bukkit.getPlayer(args[0]);
+            assert player != null;
             Location loc = player.getLocation();
             Vector3Data pos = new Vector3Data(loc.getX(), loc.getY(), loc.getZ());
-            Vector2Data rot = new Vector2Data(player.getYaw(), player.getPitch());
+            Vector2Data rot = new Vector2Data(loc.getYaw(), loc.getPitch());
             if (args.length == 1) {
                 pos.vector3Round(pos);
                 rot.vector2Round(rot);
@@ -41,20 +43,18 @@ public class ReadPTransformCommand implements CommandExecutor {
                     return true;
                 }
             }
-            DecimalFormat formatter = new DecimalFormat("#.######");
-
-            Component posMessage = Component.text("Player " + args[0] + " position: ")
+            Component posMessage = Component.text("Player " + player.getName() + " position: ")
                     .append(Component.text("[" + vector3ToString(pos, ", ") + "]")
                             .color(NamedTextColor.GREEN)
                             .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
                             .clickEvent(ClickEvent.copyToClipboard(vector3ToString(pos, " "))));
-            Component rotMessage = Component.text("Player " + args[0] + " rotation: ")
+            Component rotMessage = Component.text("Player " + player.getName() + " rotation: ")
                     .append(Component.text("[" + vector2ToString(rot, ", ") + "]")
                             .color(NamedTextColor.GREEN)
                             .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
                             .clickEvent(ClickEvent.copyToClipboard(vector2ToString(rot, " "))));
-            player.sendMessage(posMessage);
-            player.sendMessage(rotMessage);
+            sender.sendMessage(posMessage);
+            sender.sendMessage(rotMessage);
         } else {
             sender.sendMessage("§cPlayer does not exist or is offline.");
         }

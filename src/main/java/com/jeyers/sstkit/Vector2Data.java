@@ -1,5 +1,7 @@
 package com.jeyers.sstkit;
 
+import java.text.DecimalFormat;
+
 public class Vector2Data {
     public double x;
     public double y;
@@ -16,6 +18,9 @@ public class Vector2Data {
     }
 
     public static String vector2ToString(Vector2Data in, String separator) {
-        return in.x + separator + in.y;
+        DecimalFormat decimalFormat = new DecimalFormat("0.######");
+        return decimalFormat.format(in.x)
+                + separator
+                + decimalFormat.format(in.y);
     }
 }

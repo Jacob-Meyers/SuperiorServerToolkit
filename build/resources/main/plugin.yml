@@ -17,3 +17,8 @@ commands:
     usage: /<command> args
     permission: op.permission.node
     permission-message: "You do not have permission to use this command"
+  broadcastmsg:
+    description: Broadcast a message to the whole server (&color> = §)
+    usage: /<command> message
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
