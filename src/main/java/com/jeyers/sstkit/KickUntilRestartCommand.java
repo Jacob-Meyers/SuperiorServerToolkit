@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class KickUntilRestart implements CommandExecutor {
+public class KickUntilRestartCommand implements CommandExecutor {
     public static List<String> permKickListRAM = new ArrayList<>();
     public static String permKickListRAMwarn;
 

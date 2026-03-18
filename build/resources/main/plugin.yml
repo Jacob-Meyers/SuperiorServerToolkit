@@ -5,16 +5,20 @@ api-version: '1.21'
 authors: [ Jacob Meyers (TeamJEM) ]
 website: https://modrinth.com/user/TeamJEM
 permissions:
+  all.permission.node:
+    description: "Operator Status permission node."
+    default: true
   op.permission.node:
     description: "Operator Status permission node."
     default: op
-    children:
-      op.permission.node.child: true
   sstkit.permission.fly:
     description: Allows use of /fly
     default: op
   sstkit.permission.ghost:
     description: Allows use of /ghost
+    default: op
+  sstkit.permission.heal:
+    description: Allows use of /heal
     default: op
 commands:
   sstkitcommands:
@@ -57,4 +61,47 @@ commands:
     description: Go into spectator while keeping your position when you do /ghost again.
     usage: /<command>
     permission: sstkit.permission.ghost
+    permission-message: "You do not have permission to use this command"
+  warpcreate:
+    description: Create a location for /warp.
+    usage: /<command> <warp_name>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  warpremove:
+    description: Remove a location for /warp.
+    aliases: [warpremove, warpdelete]
+    usage: /<command> <warp_name>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  warplist:
+    description: Lists available /warp locations.
+    usage: /<command>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  warp:
+    description: Warp to a defined location.
+    usage: /<command> <warp_name>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  memoryusage:
+    description: Outputs the servers memory usage info.
+    aliases: [memoryusage, mem]
+    usage: /<command>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  cpuusage:
+    description: Outputs the servers cpu usage info.
+    aliases: [ cpuusage, cpu ]
+    usage: /<command>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  heal:
+    description: Heals a player's health by a set amount.
+    usage: /<command> <player> <amount>
+    permission: sstkit.permission.heal
+    permission-message: "You do not have permission to use this command"
+  list:
+    description: Lists the online players.
+    usage: /<command>
+    permission: all.permission.node
     permission-message: "You do not have permission to use this command"

@@ -3,15 +3,21 @@
     <words>
       <w>Mwarn</w>
       <w>broadcastmsg</w>
+      <w>cpuusage</w>
       <w>giveperm</w>
       <w>jeyers</w>
       <w>jpenilla</w>
       <w>kickuntilrestart</w>
       <w>kickuntilrestartclear</w>
+      <w>memoryusage</w>
       <w>playertransform</w>
       <w>readptransform</w>
       <w>sstkitcommands</w>
       <w>starterkit</w>
+      <w>warpcreate</w>
+      <w>warpdelete</w>
+      <w>warplist</w>
+      <w>warpremove</w>
     </words>
   </dictionary>
 </component>

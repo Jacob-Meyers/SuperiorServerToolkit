@@ -6,31 +6,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class GivePermCommand implements CommandExecutor, TabCompleter {
 
-    private final JavaPlugin plugin;
-
-    public GivePermCommand(JavaPlugin plugin) {
-        this.plugin = plugin;
-    }
-
-    private final List<String> givePermCommandList = new ArrayList<>(Arrays.asList(
-            "fly",
-            "ghost",
-            "heal"
-    ));
-
+public class HealCommand implements CommandExecutor, TabCompleter {
     @Override
-    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         if (args.length < 2) {
-            sender.sendMessage("§cUsage: /giveperm <player> <command>");
+            sender.sendMessage("§cInvalid argument");
             return true;
         }
 
@@ -40,15 +26,24 @@ public class GivePermCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage("§cPlayer not found.");
             return true;
         }
-
-        String selectedCommand = args[1].toLowerCase();
-        if (givePermCommandList.contains(selectedCommand)){
-            target.addAttachment(plugin, "sstkit.permission."+selectedCommand, true);
-            sender.sendMessage("§aGiven /"+selectedCommand+" permission to " + target.getName());
-        } else
-            sender.sendMessage("§cNot an available command to give perm.");
+        if (isInteger(args[1])) {
+            target.heal(Integer.parseInt(args[1]));
+            sender.sendMessage("§aHealed " + target.getName() + " by " + args[1] + " health." +
+                    "\n" + target.getName() + " now has " + target.getHealth() + " health.");
+        }
+        else
+            sender.sendMessage("§c" + args[1] + " is not a valid integer.");
 
         return true;
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
@@ -60,8 +55,6 @@ public class GivePermCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 1)
             return onlinePlayers;
-        if (args.length == 2)
-            return givePermCommandList;
         else
             return new ArrayList<>();
     }

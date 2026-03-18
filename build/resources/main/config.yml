@@ -1,0 +1,4 @@
+playerlistCommandPermission:
+  opOnly: false
+warpPermission:
+  opOnly: false

@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import static com.jeyers.sstkit.KickUntilRestart.permKickListRAMwarn;
+import static com.jeyers.sstkit.KickUntilRestartCommand.permKickListRAMwarn;
 
 
 public class JoinListener implements Listener {
@@ -12,7 +12,7 @@ public class JoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         String name = event.getPlayer().getName().toLowerCase();
 
-        if (KickUntilRestart.permKickListRAM.contains(name) || KickUntilRestart.permKickListRAM.contains("@a")) {
+        if (KickUntilRestartCommand.permKickListRAM.contains(name) || KickUntilRestartCommand.permKickListRAM.contains("@a")) {
             if (!event.getPlayer().isOp())
                 event.getPlayer().kick(Component.text(permKickListRAMwarn));
         }

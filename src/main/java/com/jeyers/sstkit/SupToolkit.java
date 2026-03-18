@@ -14,12 +14,19 @@ public final class SupToolkit extends JavaPlugin {
             "kickuntilrestartclear",
             "fly",
             "giveperm",
-            "ghost"
+            "ghost",
+            "warpcreate",
+            "warpremove",
+            "warp"
     ));
 
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
 
         Objects.requireNonNull(
@@ -33,10 +40,10 @@ public final class SupToolkit extends JavaPlugin {
                 .setExecutor(new BroadcastCommand());
         Objects.requireNonNull(
                 getCommand("kickuntilrestart"))
-                .setExecutor(new KickUntilRestart());
+                .setExecutor(new KickUntilRestartCommand());
         Objects.requireNonNull(
                 getCommand("kickuntilrestartclear"))
-                .setExecutor(new KickUntilRestartClear());
+                .setExecutor(new KickUntilRestartClearCommand());
         Objects.requireNonNull(
                 getCommand("fly"))
                 .setExecutor(new FlyCommand());
@@ -46,6 +53,33 @@ public final class SupToolkit extends JavaPlugin {
         Objects.requireNonNull(
                 getCommand("ghost"))
                 .setExecutor(new GhostCommand());
+        Objects.requireNonNull(
+                getCommand("warpcreate"))
+                .setExecutor(new WarpCreateCommand(this));
+                Objects.requireNonNull(getCommand("warpcreate")).setTabCompleter(this);
+        Objects.requireNonNull(
+                getCommand("warpremove"))
+                .setExecutor(new WarpRemoveCommand(this));
+                Objects.requireNonNull(getCommand("warp")).setTabCompleter(this);
+        Objects.requireNonNull(
+                getCommand("warplist"))
+                .setExecutor(new WarpListCommand(this));
+        Objects.requireNonNull(
+                getCommand("warp"))
+                .setExecutor(new WarpCommand(this));
+                Objects.requireNonNull(getCommand("warp")).setTabCompleter(this);
+        Objects.requireNonNull(
+                getCommand("memoryusage"))
+                .setExecutor(new MemoryUsageCommand());
+        Objects.requireNonNull(
+                getCommand("cpuusage"))
+                .setExecutor(new CPUUsageCommand());
+        Objects.requireNonNull(
+                getCommand("heal"))
+                .setExecutor(new HealCommand());
+        Objects.requireNonNull(
+                getCommand("list"))
+                .setExecutor(new ListCommand(this));
     }
 
     @Override
