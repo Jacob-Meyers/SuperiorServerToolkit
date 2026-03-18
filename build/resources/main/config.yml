@@ -1,4 +1,0 @@
-starterkit:
-  enabled: false
-  starterkitversion: 1
-  starterkitItem: "bundle[bundle_contents=[{id:\"minecraft:stone_sword\",count:1},{id:\"minecraft:leather_helmet\",count:1,components:{\"minecraft:dyed_color\":1908001}},{id:\"minecraft:leather_chestplate\",count:1,components:{\"minecraft:dyed_color\":1908001}},{id:\"minecraft:leather_leggings\",count:1,components:{\"minecraft:dyed_color\":1908001}},{id:\"minecraft:leather_boots\",count:1,components:{\"minecraft:dyed_color\":1908001}}]] 1"
