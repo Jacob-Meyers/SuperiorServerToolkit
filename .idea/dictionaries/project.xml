@@ -8,7 +8,10 @@
       <w>jpenilla</w>
       <w>kickuntilrestart</w>
       <w>kickuntilrestartclear</w>
+      <w>playertransform</w>
       <w>readptransform</w>
+      <w>sstkitcommands</w>
+      <w>starterkit</w>
     </words>
   </dictionary>
 </component>

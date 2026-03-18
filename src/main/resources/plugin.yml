@@ -17,8 +17,13 @@ permissions:
     description: Allows use of /ghost
     default: op
 commands:
+  sstkitcommands:
+    description: Outputs all Superior Server Toolkit Commands
+    usage: /<command>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
   readptransform:
-    description: Reads player position
+    description: Outputs player position and rotation
     aliases: [readptransform, playertransform]
     usage: /<command> args
     permission: op.permission.node

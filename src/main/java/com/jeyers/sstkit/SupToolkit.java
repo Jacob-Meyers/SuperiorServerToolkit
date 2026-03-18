@@ -2,14 +2,29 @@ package com.jeyers.sstkit;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
+import java.util.*;
 
 public final class SupToolkit extends JavaPlugin {
+
+    public final static List<String> commandList = new ArrayList<>(Arrays.asList(
+            "sstkitcommands",
+            "readptransform / playertransform",
+            "broadcastmsg",
+            "kickuntilrestart",
+            "kickuntilrestartclear",
+            "fly",
+            "giveperm",
+            "ghost"
+    ));
+
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
 
+        Objects.requireNonNull(
+                getCommand("sstkitcommands"))
+                .setExecutor(new CommandsListCommand());
         Objects.requireNonNull(
                 getCommand("readptransform"))
                 .setExecutor(new ReadPTransformCommand());
