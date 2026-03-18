@@ -35,8 +35,8 @@ public class ReadPTransformCommand implements CommandExecutor {
             Vector3Data pos = new Vector3Data(loc.getX(), loc.getY(), loc.getZ());
             Vector2Data rot = new Vector2Data(loc.getYaw(), loc.getPitch());
             if (args.length == 1) {
-                pos.vector3Round(pos);
-                rot.vector2Round(rot);
+                pos.round();
+                rot.round();
             } else {
                 if (!Objects.equals(args[1], "exact")) {
                     sender.sendMessage("§cInvalid argument");

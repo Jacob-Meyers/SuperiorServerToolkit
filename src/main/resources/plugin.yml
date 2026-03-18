@@ -10,6 +10,12 @@ permissions:
     default: op
     children:
       op.permission.node.child: true
+  sstkit.permission.fly:
+    description: Allows use of /fly
+    default: op
+  sstkit.permission.ghost:
+    description: Allows use of /ghost
+    default: op
 commands:
   readptransform:
     description: Reads player position
@@ -18,7 +24,32 @@ commands:
     permission: op.permission.node
     permission-message: "You do not have permission to use this command"
   broadcastmsg:
-    description: Broadcast a message to the whole server (&color> = §)
+    description: Broadcast a message to the whole server; &color> = §
     usage: /<command> message
     permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  kickuntilrestart:
+    description: Kick a player until server restarts; @a makes all players kicked, not just online players
+    usage: /<command> <player/@a> <custom_message (optional)>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  kickuntilrestartclear:
+    description: Clear the list for kickuntillrestart.
+    usage: /<command>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  fly:
+    description: Toggles flight mode for a player.
+    usage: /<command> [player]
+    permission: sstkit.permission.fly
+    permission-message: "You do not have permission to use this command"
+  giveperm:
+    description: Give permission for certain Superior Server Toolkit Commands.
+    usage: /<command> [player]
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  ghost:
+    description: Go into spectator while keeping your position when you do /ghost again.
+    usage: /<command>
+    permission: sstkit.permission.ghost
     permission-message: "You do not have permission to use this command"

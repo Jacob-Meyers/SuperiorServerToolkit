@@ -2,8 +2,6 @@ package com.jeyers.sstkit;
 
 import java.text.DecimalFormat;
 
-import static java.io.File.separator;
-
 public class Vector3Data {
     public double x;
     public double y;
@@ -15,11 +13,10 @@ public class Vector3Data {
         this.z = z;
     }
 
-    public Vector3Data vector3Round(Vector3Data in){
-        in.x = Math.round(x);
-        in.y = Math.round(y);
-        in.z = Math.round(z);
-        return in;
+    public void round() {
+        this.x = Math.round(this.x);
+        this.y = Math.round(this.y);
+        this.z = Math.round(this.z);
     }
 
     public static String vector3ToString(Vector3Data in, String separator) {

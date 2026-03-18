@@ -27,7 +27,7 @@ public class BroadcastCommand implements CommandExecutor {
         }
 
         final String message = String.join(" ", msgArgs);
-        final Component finalMessage = Component.text(broadcastPrefix + message.replace("&color>","§"));
+        final Component finalMessage = Component.text(broadcastPrefix + message.replaceAll("&color>","§"));
         Bukkit.broadcast(finalMessage);
         return true;
     }

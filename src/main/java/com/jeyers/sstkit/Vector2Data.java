@@ -11,10 +11,9 @@ public class Vector2Data {
         this.y = y;
     }
 
-    public Vector2Data vector2Round(Vector2Data in){
-        in.x = Math.round(x);
-        in.y = Math.round(y);
-        return in;
+    public void round() {
+        this.x = Math.round(this.x);
+        this.y = Math.round(this.y);
     }
 
     public static String vector2ToString(Vector2Data in, String separator) {
