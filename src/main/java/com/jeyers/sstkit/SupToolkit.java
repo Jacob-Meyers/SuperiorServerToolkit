@@ -32,7 +32,8 @@ public final class SupToolkit extends JavaPlugin implements Listener {
             "vpncheck",
             "tempban",
             "tempbanlist",
-            "untempban / pardontempban"
+            "untempban / pardontempban",
+            "vote"
     ));
 
 
@@ -110,6 +111,10 @@ public final class SupToolkit extends JavaPlugin implements Listener {
                 getCommand("tempban"))
                 .setExecutor(new TempBanCommand(this));
                 Objects.requireNonNull(getCommand("tempban")).setTabCompleter(this);
+        Objects.requireNonNull(
+                getCommand("vote"))
+                .setExecutor(new VoteCommand(this));
+                Objects.requireNonNull(getCommand("vote")).setTabCompleter(this);
     }
 
     @Override

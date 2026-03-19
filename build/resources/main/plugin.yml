@@ -127,3 +127,8 @@ commands:
     usage: /<command> <player> <time_in_minutes>
     permission: op.permission.node
     permission-message: "You do not have permission to use this command"
+  vote:
+    description: Vote for the server to promote it on server lists
+    usage: /<command>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"

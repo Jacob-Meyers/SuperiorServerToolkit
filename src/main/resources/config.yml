@@ -1,4 +1,6 @@
-VPNCHECK-iphubInfo-API_KEY: "API_KEY_HERE"
+VPNCHECK-iphubInfo-API_KEY: API_KEY_HERE
+
+voteLink: https://minecraft-server-list.com/server/510757/vote/
 
 playerlistCommandPermission:
   opOnly: true
