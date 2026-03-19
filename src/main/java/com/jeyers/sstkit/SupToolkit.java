@@ -14,30 +14,30 @@ import java.util.*;
 public final class SupToolkit extends JavaPlugin implements Listener {
 
     public final static List<String> commandList = new ArrayList<>(Arrays.asList(
-"sstkitcommands",
-"sstkitreload / sstkit / reloadsstkit",
-"readptransform / playertransform",
-"broadcastmsg",
-"kickuntilrestart",
-"kickuntilrestartclear",
-"fly",
-"giveperm",
-"ghost",
-"warpcreate",
-"warpremove",
-"warp",
-"memoryusage / mem",
-"cpuusage / cpu",
-"heal",
-"list",
-"invsee",
-"endersee",
-"invincible",
-"vpncheck",
-"tempban",
-"tempbanlist",
-"untempban / pardontempban",
-"vote"
+        "sstkitcommands",
+        "sstkitreload / sstkit / reloadsstkit",
+        "readptransform / playertransform",
+        "broadcastmsg",
+        "kickuntilrestart",
+        "kickuntilrestartclear",
+        "fly",
+        "giveperm",
+        "ghost",
+        "warpcreate",
+        "warpremove",
+        "warp",
+        "memoryusage / mem",
+        "cpuusage / cpu",
+        "heal",
+        "list",
+        "invsee",
+        "endersee",
+        "invincible",
+        "vpncheck",
+        "tempban",
+        "tempbanlist",
+        "untempban / pardontempban",
+        "vote"
     ));
 
     @Override
@@ -123,10 +123,10 @@ public final class SupToolkit extends JavaPlugin implements Listener {
                 .setExecutor(new VoteCommand(this));
                 Objects.requireNonNull(getCommand("vote")).setTabCompleter(this);
 
-        /// PluginCommand cmd = getCommand("warp");
-        /// if (cmd != null) {
-        ///     cmd.setPermission("none.permission.node");
-        /// }
+        // PluginCommand cmd = getCommand("warp");
+        // if (cmd != null) {
+        //     cmd.setPermission("none.permission.node");
+        // }
 
         ConsoleCommandSender console = Bukkit.getConsoleSender();
         List<String> commands = getConfig().getStringList("disabledFeatures.commands");
