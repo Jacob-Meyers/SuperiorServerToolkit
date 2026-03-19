@@ -6,11 +6,14 @@ authors: [ Jacob Meyers (TeamJEM) ]
 website: https://modrinth.com/user/TeamJEM
 permissions:
   all.permission.node:
-    description: "Operator Status permission node."
+    description: "Every Player Status permission node."
     default: true
   op.permission.node:
     description: "Operator Status permission node."
     default: op
+  disabled.command:
+    description: "Disabled command."
+    default: false
   sstkit.permission.fly:
     description: Allows use of /fly
     default: op
@@ -26,9 +29,15 @@ commands:
     usage: /<command>
     permission: op.permission.node
     permission-message: "You do not have permission to use this command"
+  sstkitreload:
+    description: Outputs all Superior Server Toolkit Commands
+    aliases: [ sstkitreload, sstkit, reloadsstkit ]
+    usage: /<command>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
   readptransform:
     description: Outputs player position and rotation
-    aliases: [readptransform, playertransform]
+    aliases: [ readptransform, playertransform ]
     usage: /<command> args
     permission: op.permission.node
     permission-message: "You do not have permission to use this command"

@@ -16,12 +16,15 @@ public class WarpListCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
-        if (plugin.getConfig().getBoolean("warpPermission.opOnly") && !sender.isOp()){
+        if (!plugin.getConfig().getBoolean("warp.setup")){
+            sender.sendMessage("§cWarps are not setup on this server!");
+            return true;
+        } else if (plugin.getConfig().getBoolean("warp.opOnlyPerm") && !sender.isOp()){
             sender.sendMessage("You do not have permission to use this command");
             return true;
         }
 
-        ConfigurationSection section = plugin.getConfig().getConfigurationSection("warps");
+        ConfigurationSection section = plugin.getConfig().getConfigurationSection("warp.warps");
         if (section == null || section.getKeys(false).isEmpty()) {
             sender.sendMessage("§cNo warps found.");
             return true;

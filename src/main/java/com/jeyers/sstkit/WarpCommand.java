@@ -29,7 +29,10 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        if (plugin.getConfig().getBoolean("warpPermission.opOnly") && !sender.isOp()){
+        if (!plugin.getConfig().getBoolean("warp.setup")){
+            sender.sendMessage("§cWarps are not setup on this server!");
+            return true;
+        } else if (plugin.getConfig().getBoolean("warp.opOnlyPerm") && !sender.isOp()){
             sender.sendMessage("You do not have permission to use this command");
             return true;
         }
@@ -39,7 +42,7 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        final Location newLocation = plugin.getConfig().getLocation("warps." + args[0]);
+        final Location newLocation = plugin.getConfig().getLocation("warp.warps." + args[0]);
         if (newLocation != null){
             player.teleport(newLocation);
             sender.sendMessage("§aWarped to "+args[0]);
@@ -62,7 +65,7 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
         List<String> completions = new ArrayList<>();
 
         if (args.length <= 1) {
-            ConfigurationSection section = plugin.getConfig().getConfigurationSection("warps");
+            ConfigurationSection section = plugin.getConfig().getConfigurationSection("warp.warps");
 
             if (section != null) {
                 for (String warp : section.getKeys(false)) {

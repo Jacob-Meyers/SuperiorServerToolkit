@@ -25,7 +25,7 @@ public class ListCommand implements CommandExecutor {
                 .map(Player::getName)
                 .toList();
 
-        if (plugin.getConfig().getBoolean("playerlistCommandPermission.opOnly") && !sender.isOp()){
+        if (plugin.getConfig().getBoolean("playerlist.opOnlyPerm") && !sender.isOp()){
             sender.sendMessage("You do not have permission to use this command");
             return true;
         }

@@ -1,5 +1,8 @@
 package com.jeyers.sstkit;
 
+import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +15,7 @@ public final class SupToolkit extends JavaPlugin implements Listener {
 
     public final static List<String> commandList = new ArrayList<>(Arrays.asList(
             "sstkitcommands",
+            "sstkitreload / sstkit / reloadsstkit",
             "readptransform / playertransform",
             "broadcastmsg",
             "kickuntilrestart",
@@ -49,6 +53,10 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         Objects.requireNonNull(
                 getCommand("sstkitcommands"))
                 .setExecutor(new CommandsListCommand());
+        Objects.requireNonNull(
+                getCommand("sstkitreload"))
+                .setExecutor(new ReloadConfigCommand(this));
+                Objects.requireNonNull(getCommand("sstkitreload")).setTabCompleter(this);
         Objects.requireNonNull(
                 getCommand("readptransform"))
                 .setExecutor(new ReadPTransformCommand());
@@ -115,6 +123,24 @@ public final class SupToolkit extends JavaPlugin implements Listener {
                 getCommand("vote"))
                 .setExecutor(new VoteCommand(this));
                 Objects.requireNonNull(getCommand("vote")).setTabCompleter(this);
+
+        /// PluginCommand cmd = getCommand("warp");
+        /// if (cmd != null) {
+        ///     cmd.setPermission("none.permission.node");
+        /// }
+
+        ConsoleCommandSender console = Bukkit.getConsoleSender();
+        List<String> commands = getConfig().getStringList("disabledFeatures.commands");
+        for (String command : commands) {
+            PluginCommand cmd = getCommand(command);
+            if (cmd != null) {
+                cmd.setPermission("disabled.command");
+                console.sendMessage("§e[Superior Server Toolkit]§b Command '" + command + "' is now disabled.");
+            } else {
+                console.sendMessage("§e[Superior Server Toolkit]§c Command not found '" + command + "' » Unabled to disable.");
+            }
+        }
+
     }
 
     @Override

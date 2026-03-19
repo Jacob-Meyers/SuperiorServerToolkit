@@ -31,7 +31,9 @@ public class WarpCreateCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        plugin.getConfig().set("warps." + args[0], player.getLocation());
+        if (!plugin.getConfig().getBoolean("warp.setup"))
+            sender.sendMessage("§eWARNING: Warps are marked as NOT setup in the config.");
+        plugin.getConfig().set("warp.warps." + args[0], player.getLocation());
 
         try {
             plugin.saveConfig();

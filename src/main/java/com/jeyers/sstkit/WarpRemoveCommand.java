@@ -26,12 +26,14 @@ public class WarpRemoveCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage("§cWarp location not defined.");
             return true;
         }
-        if (!plugin.getConfig().contains("warps." + args[0])) {
+        if (!plugin.getConfig().contains("warp.warps." + args[0])) {
             sender.sendMessage("§cWarp location " + args[0] + " does not exist.");
             return true;
         }
 
-        plugin.getConfig().set("warps." + args[0], null);
+        if (!plugin.getConfig().getBoolean("warp.setup"))
+            sender.sendMessage("§eWARNING: Warps are marked as NOT setup in the config.");
+        plugin.getConfig().set("warp.warps." + args[0], null);
 
         try {
             plugin.saveConfig();
@@ -49,7 +51,7 @@ public class WarpRemoveCommand implements CommandExecutor, TabCompleter {
         List<String> completions = new ArrayList<>();
 
         if (args.length <= 1) {
-            ConfigurationSection section = plugin.getConfig().getConfigurationSection("warps");
+            ConfigurationSection section = plugin.getConfig().getConfigurationSection("warp.warps");
 
             if (section != null) {
                 for (String warp : section.getKeys(false)) {

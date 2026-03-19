@@ -26,11 +26,16 @@ public class VoteCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
-        String voteLink = plugin.getConfig().getString("voteLink");
+        if (!plugin.getConfig().getBoolean("vote.setup")){
+            sender.sendMessage("§cVotes are not setup on this server!");
+            return true;
+        }
+
+        String voteLink = plugin.getConfig().getString("vote.link");
         assert voteLink != null;
         Component component = Component.text("[ !!! «= Click to Vote =» !!! ]")
-                .color(NamedTextColor.GREEN)
                 .style(Style.style(TextDecoration.BOLD))
+                .color(NamedTextColor.GREEN)
                 .hoverEvent(HoverEvent.showText(Component.text("Click to Vote!")))
                 .clickEvent(ClickEvent.openUrl(voteLink));
         sender.sendMessage(component);

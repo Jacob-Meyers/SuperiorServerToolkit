@@ -1,9 +1,21 @@
 VPNCHECK-iphubInfo-API_KEY: API_KEY_HERE
 
-voteLink: https://minecraft-server-list.com/server/510757/vote/
+vote:
+  setup: false
+  link: https://minecraft-server-list.com/server/510757/vote/
 
-playerlistCommandPermission:
-  opOnly: true
+playerlist:
+  opOnlyPerm: true
 
-warpPermission:
-  opOnly: false
+warp:
+  setup: false
+  opOnlyPerm: false
+  warps: {}
+
+disabledFeatures:
+  commands:
+    #- warp
+    #- warplist
+    #- warpremove
+    #- warpcreate
+    #- any_sstkit_command
