@@ -105,3 +105,25 @@ commands:
     usage: /<command>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"
+  invsee:
+    description: Shows a specified online players inventory or use endersee for ender chest.
+    aliases: [ invsee, endersee ]
+    usage: /<command>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  invincible:
+    description: Makes yourself or a specified player not take any damage until run again or server restart.
+    usage: /<command> <optional_player>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  vpncheck:
+    description: Check player if likely using VPN.
+    usage: /<command> <player>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  tempban:
+    description: Temporarily ban a player (IN MINUTES).
+    aliases: [ tempban, untempban, pardontempban, tempbanlist ]
+    usage: /<command> <player> <time_in_minutes>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"

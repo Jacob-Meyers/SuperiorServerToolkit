@@ -1,4 +1,7 @@
+VPNCHECK-iphubInfo-API_KEY: "API_KEY_HERE"
+
 playerlistCommandPermission:
-  opOnly: false
+  opOnly: true
+
 warpPermission:
   opOnly: false

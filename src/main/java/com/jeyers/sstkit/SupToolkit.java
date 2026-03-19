@@ -1,10 +1,14 @@
 package com.jeyers.sstkit;
 
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
 
-public final class SupToolkit extends JavaPlugin {
+public final class SupToolkit extends JavaPlugin implements Listener {
 
     public final static List<String> commandList = new ArrayList<>(Arrays.asList(
             "sstkitcommands",
@@ -17,7 +21,18 @@ public final class SupToolkit extends JavaPlugin {
             "ghost",
             "warpcreate",
             "warpremove",
-            "warp"
+            "warp",
+            "memoryusage / mem",
+            "cpuusage / cpu",
+            "heal",
+            "list",
+            "invsee",
+            "endersee",
+            "invincible",
+            "vpncheck",
+            "tempban",
+            "tempbanlist",
+            "untempban / pardontempban"
     ));
 
 
@@ -27,7 +42,8 @@ public final class SupToolkit extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveConfig();
 
-        getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+        getServer().getPluginManager().registerEvents(this, this);
 
         Objects.requireNonNull(
                 getCommand("sstkitcommands"))
@@ -80,11 +96,35 @@ public final class SupToolkit extends JavaPlugin {
         Objects.requireNonNull(
                 getCommand("list"))
                 .setExecutor(new ListCommand(this));
+        Objects.requireNonNull(
+                getCommand("invsee"))
+                .setExecutor(new InvSeeCommand());
+                Objects.requireNonNull(getCommand("invsee")).setTabCompleter(this);
+        Objects.requireNonNull(
+                getCommand("invincible"))
+                .setExecutor(new InvincibleCommand());
+        Objects.requireNonNull(
+                getCommand("vpncheck"))
+                .setExecutor(new VPNCheckCommand(this));
+        Objects.requireNonNull(
+                getCommand("tempban"))
+                .setExecutor(new TempBanCommand(this));
+                Objects.requireNonNull(getCommand("tempban")).setTabCompleter(this);
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            if (InvincibleCommand.invinciblePlayers.contains(player.getUniqueId())) {
+                // Preventing any damage
+                event.setCancelled(true);
+            }
+        }
     }
 
 }
