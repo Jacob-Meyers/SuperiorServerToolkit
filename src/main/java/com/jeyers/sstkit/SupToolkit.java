@@ -14,32 +14,31 @@ import java.util.*;
 public final class SupToolkit extends JavaPlugin implements Listener {
 
     public final static List<String> commandList = new ArrayList<>(Arrays.asList(
-            "sstkitcommands",
-            "sstkitreload / sstkit / reloadsstkit",
-            "readptransform / playertransform",
-            "broadcastmsg",
-            "kickuntilrestart",
-            "kickuntilrestartclear",
-            "fly",
-            "giveperm",
-            "ghost",
-            "warpcreate",
-            "warpremove",
-            "warp",
-            "memoryusage / mem",
-            "cpuusage / cpu",
-            "heal",
-            "list",
-            "invsee",
-            "endersee",
-            "invincible",
-            "vpncheck",
-            "tempban",
-            "tempbanlist",
-            "untempban / pardontempban",
-            "vote"
+"sstkitcommands",
+"sstkitreload / sstkit / reloadsstkit",
+"readptransform / playertransform",
+"broadcastmsg",
+"kickuntilrestart",
+"kickuntilrestartclear",
+"fly",
+"giveperm",
+"ghost",
+"warpcreate",
+"warpremove",
+"warp",
+"memoryusage / mem",
+"cpuusage / cpu",
+"heal",
+"list",
+"invsee",
+"endersee",
+"invincible",
+"vpncheck",
+"tempban",
+"tempbanlist",
+"untempban / pardontempban",
+"vote"
     ));
-
 
     @Override
     public void onEnable() {

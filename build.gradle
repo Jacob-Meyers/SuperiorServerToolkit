@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id 'com.gradleup.shadow' version '9.2.1'
 }
 
 group = 'com.jeyers'
@@ -18,6 +19,12 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
     // Gson for JSON parsing
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'net.kyori:adventure-api:4.17.0'  // Adventure API to be shaded
+}
+
+shadowJar {
+    archiveClassifier.set('') // Replace the normal jar
+    relocate('net.kyori.adventure', 'com.jeyers.shaded.adventure')
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -41,6 +48,8 @@ java {
     if (JavaVersion.current() < javaVersion) {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 tasks.withType(JavaCompile).configureEach {
