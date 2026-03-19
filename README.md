@@ -28,29 +28,3 @@ disabledFeatures:
 ```
 #### You can dsiable **ANY** Superior Server Toolkit commands (excluding aliases) under 'disabledFeatures.commands' in the config.yml as shown here. 
 Disabled commands will not show up for any players, requires restart after config (all other config adjustments can be reloaded with '/sstkitreload').
-
-## All available commands and their aliases of the latest version:
-- sstkitcommands
-- sstkitreload / sstkit / reloadsstkit
-- readptransform / playertransform
-- broadcastmsg
-- kickuntilrestart
-- kickuntilrestartclea
-- fly
-- giveperm
-- ghost
-- warpcreate
-- warpremove
-- warp
-- memoryusage / mem
-- cpuusage / cpu
-- heal
-- list
-- invsee
-- endersee
-- invincible
-- vpncheck
-- tempban
-- tempbanlist
-- untempban / pardontempban
-- vote
