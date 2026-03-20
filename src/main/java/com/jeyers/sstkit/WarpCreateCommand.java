@@ -14,7 +14,7 @@ import java.util.List;
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/18/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/20/2026
 ///
 
 
@@ -34,7 +34,7 @@ public class WarpCreateCommand implements CommandExecutor, TabCompleter {
             return true;
         }
         if (args.length < 1) {
-            sender.sendMessage("§cWarp location not defined.");
+            sender.sendMessage("§cWarp location name not defined.");
             return true;
         }
 

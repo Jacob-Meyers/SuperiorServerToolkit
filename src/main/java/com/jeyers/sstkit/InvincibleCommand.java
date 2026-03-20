@@ -14,7 +14,7 @@ import java.util.UUID;
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/18/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/20/2026
 ///
 
 
@@ -31,7 +31,7 @@ public class InvincibleCommand implements CommandExecutor {
             }
             player = ((Player) sender).getPlayer();
         } else {
-            player = Bukkit.getPlayer(args[0]);
+            player = Bukkit.getPlayerExact(args[0].toLowerCase());
         }
 
         if (player==null) {

@@ -19,7 +19,7 @@ import java.util.List;
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/18/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/20/2026
 ///
 
 
@@ -64,7 +64,7 @@ public class TempBanCommand implements CommandExecutor, TabCompleter {
                                             + ".time") - System.currentTimeMillis()) / (1000.0 * 60 * 60)));
                     if (timeTill <= 0)
                         continue;  /// DON'T WORRY ABOUT UNBANNING THAT WILL HAPPEN ON REJOIN!
-                    tempbanlist.append("\n   ").append(warp)
+                    tempbanlist.append("\n   §e").append(warp)
                             .append("§a « Time: ")
                                 .append(timeTill)
                                 .append("hrs")
@@ -109,8 +109,8 @@ public class TempBanCommand implements CommandExecutor, TabCompleter {
         plugin.getConfig().set("tempbans." + target.getName() + "." + uuid + ".bannedby", sender.getName());
         plugin.saveConfig();
 
-        Player player = Bukkit.getPlayer(args[0]);
-        if (player!=null) player.kick(Component.text("§cYou are temporarily banned for " + durationHours + " hours.\n\n§cReason: §b"+banReason+"\n§cBanned By: §b"+sender.getName()));
+        Player player = Bukkit.getPlayerExact(args[0].toLowerCase());
+        if (player!=null) player.kick(Component.text("\n§cYou are temporarily banned for " + durationHours + " hours.\n\n§cReason: §b"+banReason+"\n§cBanned By: §b"+sender.getName()));
         sender.sendMessage("§aPlayer " + target.getName() + " has been temp banned for " + durationHours + " hours.");
 
         return true;

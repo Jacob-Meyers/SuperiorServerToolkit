@@ -32,12 +32,12 @@ public class CheckForUpdate {
     }
 
     public static modrinthGETinfo checkForUpdate() throws Exception {
-        String minecraftVersion = Bukkit.getServer().getMinecraftVersion();
+        String minecraftVersion = Bukkit.getBukkitVersion().split("-")[0];
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://api.modrinth.com/v2/project/"+MODRINTH_PROJECT_ID+"/version?game_versions=[%22"+minecraftVersion+"%22]"))
-                .header("User-Agent", "sstkit") // IMPORTANT (Modrinth requires this)
+                .header("User-Agent", "sstkit") // Modrinth requires this thingy
                 .GET()
                 .build();
 

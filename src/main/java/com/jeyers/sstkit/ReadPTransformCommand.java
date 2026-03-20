@@ -21,7 +21,7 @@ import static com.jeyers.sstkit.Vector3Data.vector3ToString;
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/16/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/20/2026
 ///
 
 
@@ -35,7 +35,7 @@ public class ReadPTransformCommand implements CommandExecutor {
 
         OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(args[0]);
         if (offlinePlayer.isOnline()) {
-            Player player = Bukkit.getPlayer(args[0]);
+            Player player = Bukkit.getPlayerExact(args[0].toLowerCase());
             assert player != null;
             Location loc = player.getLocation();
             Vector3Data pos = new Vector3Data(loc.getX(), loc.getY(), loc.getZ());

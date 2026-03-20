@@ -22,7 +22,7 @@ import java.util.Objects;
 /// I LOST THE ORIGINAL LINK, THIS IS NOT COMPLETELY MY WORK.
 /// I ONLY IMPLEMENTED IT INTO PAPER/BUKKIT.
 /// File Created 3/18/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/20/2026
 ///
 
 public class VPNCheckCommand implements CommandExecutor {
@@ -39,7 +39,7 @@ public class VPNCheckCommand implements CommandExecutor {
             sender.sendMessage("§cInvalid argument; Usage: /<command> <player>");
             return true;
         }
-        Player player = Bukkit.getPlayer(args[0]);
+        Player player = Bukkit.getPlayerExact(args[0].toLowerCase());
         if (player==null) {
             sender.sendMessage("§cPlayer not found.");
             return true;

@@ -44,9 +44,10 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         "vote"
     ));
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onEnable() {
-        CURRENT_VERSION_NUMBER = CURRENT_VERSION_PREFIX + getPluginMeta().getVersion();
+        CURRENT_VERSION_NUMBER = CURRENT_VERSION_PREFIX + getDescription().getVersion();
 
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
@@ -128,6 +129,12 @@ public final class SupToolkit extends JavaPlugin implements Listener {
                 getCommand("vote"))
                 .setExecutor(new VoteCommand(this));
                 Objects.requireNonNull(getCommand("vote")).setTabCompleter(this);
+
+        // ALL /tpa COMMANDS ARE IN ONE CLASS BUT HAVE NO ALIASES TO -
+        // EACHOTHER TO ALLOW DISABLING OF SPECIFIC TPA COMMANDS IN THE CONFIG.
+        Objects.requireNonNull(getCommand("tpa")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpa")).setTabCompleter(this);
+        Objects.requireNonNull(getCommand("tpaccept")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpaccept")).setTabCompleter(this);
+        Objects.requireNonNull(getCommand("tpdecline")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpdecline")).setTabCompleter(this);
 
         // PluginCommand cmd = getCommand("warp");
         // if (cmd != null) {

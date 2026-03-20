@@ -141,3 +141,19 @@ commands:
     usage: /<command>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"
+  tpa:
+    description: Request to teleport to a player or cancel with /tpacancel
+    aliases: [ tpa, tpacancel ]
+    usage: /<command> <target_player>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  tpaccept:
+    description: Accept a tpa request.
+    usage: /<command> <sending_player>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  tpdecline:
+    description: Decline a tpa request.
+    usage: /<command> <sending_player>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"

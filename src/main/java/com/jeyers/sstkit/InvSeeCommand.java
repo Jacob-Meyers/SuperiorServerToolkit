@@ -15,7 +15,7 @@ import java.util.List;
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/18/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/20/2026
 ///
 
 
@@ -32,7 +32,7 @@ public class InvSeeCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        Player target = Bukkit.getPlayer(args[0]);
+        Player target = Bukkit.getPlayerExact(args[0].toLowerCase());
 
         if (target != null) {
             if (target.getName().equals(sender.getName())) {
