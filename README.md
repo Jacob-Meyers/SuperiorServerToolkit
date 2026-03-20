@@ -1,8 +1,9 @@
-![enter image description here](https://cdn.modrinth.com/data/cached_images/109b788550ca83731761863e5f1c50639bc0d6d2.png)
+![SSTKIT_SUPPORTS](https://cdn.modrinth.com/data/cached_images/109b788550ca83731761863e5f1c50639bc0d6d2.png)
 
 **Superior Server Toolkit (SSTKIT) is designed for servers of all kind bringing in commands that freshen up the experience of the players on your server and especially making server management easier.
 From basic commands like /warp and /heal and more commands that are necessary for protecting your server like /tempban and /vpncheck.**
 
+[![Download on Modrinth](https://img.shields.io/badge/Download-Modrinth-1bd96a?style=for-the-badge&logo=modrinth&logoColor=white)](https://modrinth.com/project/FfmaCyRL)
 
 ### Config Example (warps and tempbans set by commands):
 
