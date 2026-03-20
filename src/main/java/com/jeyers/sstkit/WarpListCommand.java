@@ -7,6 +7,13 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/18/2026
+/// Last Edit    3/19/2026
+///
+
+
 public class WarpListCommand implements CommandExecutor {
 
     private final JavaPlugin plugin;

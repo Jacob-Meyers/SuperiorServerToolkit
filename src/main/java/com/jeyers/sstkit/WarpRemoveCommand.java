@@ -12,6 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/18/2026
+/// Last Edit    3/19/2026
+///
+
+
 public class WarpRemoveCommand implements CommandExecutor, TabCompleter {
 
     private final JavaPlugin plugin;
@@ -39,6 +46,7 @@ public class WarpRemoveCommand implements CommandExecutor, TabCompleter {
             plugin.saveConfig();
             sender.sendMessage("§aWarp location " + args[0] + " removed!");
         } catch (Exception e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
         }
         return true;

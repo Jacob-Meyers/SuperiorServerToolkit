@@ -2,6 +2,12 @@ package com.jeyers.sstkit;
 
 import java.text.DecimalFormat;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/16/2026
+/// Last Edit    3/16/2026
+///
+
 public class Vector2Data {
     public double x;
     public double y;

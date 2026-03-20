@@ -11,6 +11,13 @@ import org.jspecify.annotations.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/17/2026
+/// Last Edit    3/19/2026
+///
+
+
 public class GhostCommand implements CommandExecutor {
 
     static Map<String, Location> ghostLocMap = new HashMap<>();

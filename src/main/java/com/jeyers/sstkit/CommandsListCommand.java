@@ -7,6 +7,13 @@ import org.jspecify.annotations.NonNull;
 
 import static com.jeyers.sstkit.SupToolkit.commandList;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/17/2026
+/// Last Edit    3/19/2026
+///
+
+
 public class CommandsListCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {

@@ -11,6 +11,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/18/2026
+/// Last Edit    3/19/2026
+///
+
 
 public class InvincibleCommand implements CommandExecutor {
     public static final Set<UUID> invinciblePlayers = new HashSet<>();

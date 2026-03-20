@@ -16,6 +16,13 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/19/2026
+/// Last Edit    3/19/2026
+///
+
+
 public class VoteCommand implements CommandExecutor, TabCompleter {
 
     private final JavaPlugin plugin;

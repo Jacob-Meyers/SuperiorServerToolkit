@@ -21,6 +21,8 @@ import java.util.Objects;
 /// CODE BASED OFF OF SOME RANDOM GUY ON THE INTERNET!!!
 /// I LOST THE ORIGINAL LINK, THIS IS NOT COMPLETELY MY WORK.
 /// I ONLY IMPLEMENTED IT INTO PAPER/BUKKIT.
+/// File Created 3/18/2026
+/// Last Edit    3/19/2026
 ///
 
 public class VPNCheckCommand implements CommandExecutor {
@@ -75,6 +77,7 @@ public class VPNCheckCommand implements CommandExecutor {
                 }
 
             } catch (Exception e) {
+                //noinspection CallToPrintStackTrace
                 e.printStackTrace();
                 sender.sendMessage("§cFailed to check VPN status.");
             }

@@ -8,6 +8,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import static com.jeyers.sstkit.KickUntilRestartCommand.permKickListRAMwarn;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/17/2026
+/// Last Edit    3/19/2026
+///
+
 
 public class JoinListener implements Listener {
 

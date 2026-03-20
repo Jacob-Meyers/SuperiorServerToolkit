@@ -12,6 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/17/2026
+/// Last Edit    3/19/2026
+///
+
+
 public class KickUntilRestartCommand implements CommandExecutor {
     public static List<String> permKickListRAM = new ArrayList<>();
     public static String permKickListRAMwarn;

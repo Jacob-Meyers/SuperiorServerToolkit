@@ -13,6 +13,10 @@ import java.util.*;
 
 public final class SupToolkit extends JavaPlugin implements Listener {
 
+    static String CURRENT_VERSION_PREFIX = "v"; // Prefix to add beofre the modrinth current version_number
+    static String CURRENT_VERSION_NUMBER; // IS SET DURING onEnable()
+    final static String MODRINTH_PROJECT_ID = "FfmaCyRL";
+
     public final static List<String> commandList = new ArrayList<>(Arrays.asList(
         "sstkitcommands",
         "sstkitreload / sstkit / reloadsstkit",
@@ -42,6 +46,8 @@ public final class SupToolkit extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        CURRENT_VERSION_NUMBER = CURRENT_VERSION_PREFIX + getPluginMeta().getVersion();
+
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
         saveConfig();
@@ -138,6 +144,25 @@ public final class SupToolkit extends JavaPlugin implements Listener {
             } else {
                 console.sendMessage("§e[Superior Server Toolkit]§c Command not found '" + command + "' » Unabled to disable.");
             }
+        }
+
+        try {
+            CheckForUpdate.modrinthGETinfo mgInfo = CheckForUpdate.checkForUpdate();
+            assert mgInfo != null;
+            if (!CURRENT_VERSION_NUMBER.equals(mgInfo.version_number) && mgInfo.version_type.equals("release")) {
+                console.sendMessage("§e[Superior Server Toolkit]§a SUPPERIOR SERVER TOOLKIT HAS AN UPDATE FOR THIS MINECRAFT VERSION !!!");
+                for (CheckForUpdate.modrinthGETFileInfo file : mgInfo.files) {
+                    if (file.primary) {
+                        console.sendMessage("§e[Superior Server Toolkit]§a NEW VERSION URL :» §b" + file.url);
+                        break;
+                    } else {
+                        console.sendMessage("§e[Superior Server Toolkit]§c NEW UPDATE DETECTED, BUT URL FAILED TO GET; CHECK MODRINTH FOR NEW RELEASES");
+                    }
+                }
+
+            }
+        } catch (Exception ignored) {
+            console.sendMessage("§e[Superior Server Toolkit]§c Failed to check for new updates. Possible internet connectivity issues?");
         }
 
     }

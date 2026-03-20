@@ -9,6 +9,14 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/16/2026
+/// Last Edit    3/19/2026
+///
+
+
+
 public class BroadcastCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String[] args) {

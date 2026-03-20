@@ -13,6 +13,12 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+///
+/// Created by Jacob Meyers (TeamJEM)
+/// File Created 3/18/2026
+/// Last Edit    3/19/2026
+///
+
 
 public class WarpCommand implements CommandExecutor, TabCompleter {
 
@@ -52,6 +58,7 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
         try {
             plugin.saveConfig();
         } catch (Exception e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
         }
         return true;
