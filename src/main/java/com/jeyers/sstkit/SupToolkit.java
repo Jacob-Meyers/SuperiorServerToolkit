@@ -80,9 +80,6 @@ public final class SupToolkit extends JavaPlugin implements Listener {
                 getCommand("fly"))
                 .setExecutor(new FlyCommand());
         Objects.requireNonNull(
-                getCommand("giveperm"))
-                .setExecutor(new GivePermCommand(this));
-        Objects.requireNonNull(
                 getCommand("ghost"))
                 .setExecutor(new GhostCommand());
         Objects.requireNonNull(

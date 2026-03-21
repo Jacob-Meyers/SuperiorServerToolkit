@@ -61,11 +61,6 @@ commands:
     usage: /<command> [player]
     permission: sstkit.permission.fly
     permission-message: "You do not have permission to use this command"
-  giveperm:
-    description: Give permission for certain Superior Server Toolkit Commands.
-    usage: /<command> [player]
-    permission: op.permission.node
-    permission-message: "You do not have permission to use this command"
   ghost:
     description: Go into spectator while keeping your position when you do /ghost again.
     usage: /<command>
