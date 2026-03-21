@@ -147,13 +147,23 @@ commands:
     usage: /<command> <target_player>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"
-  tpaccept:
+  tpyes:
     description: Accept a tpa request.
     usage: /<command> <sending_player>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"
-  tpdecline:
+  tpno:
     description: Decline a tpa request.
     usage: /<command> <sending_player>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  sethome:
+    description: Sets your home location.
+    usage: /<command>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  home:
+    description: Teleports to your set home location.
+    usage: /<command>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"

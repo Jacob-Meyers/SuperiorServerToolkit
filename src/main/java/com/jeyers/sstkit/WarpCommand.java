@@ -13,10 +13,13 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.jeyers.sstkit.CombatListener.COMBAT_TIME;
+import static com.jeyers.sstkit.CombatListener.combatTagged;
+
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/18/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/21/2026
 ///
 
 
@@ -43,6 +46,14 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
+        Long lastCombat = combatTagged.get(player.getUniqueId());
+        if (lastCombat != null && (System.currentTimeMillis() - lastCombat) < COMBAT_TIME) {
+            player.sendMessage("§cYou cannot warp while in combat!");
+            long remainingSeconds = Math.max(0, (COMBAT_TIME - (System.currentTimeMillis() - lastCombat)) / 1000);
+            player.sendMessage("§bYou are detected in combat for another §c" + remainingSeconds + "§b seconds!");
+            return true;
+        }
+
         if (args.length < 1) {
             sender.sendMessage("§cWarp location not defined.");
             return true;
@@ -55,12 +66,6 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
         } else
             sender.sendMessage("§cWarp location does not exist.");
 
-        try {
-            plugin.saveConfig();
-        } catch (Exception e) {
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
-        }
         return true;
     }
 

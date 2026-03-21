@@ -1,14 +1,12 @@
 package com.jeyers.sstkit;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static com.jeyers.sstkit.CombatListener.COMBAT_TIME_HOME;
 import static com.jeyers.sstkit.CombatListener.combatTagged;
@@ -19,11 +17,10 @@ import static com.jeyers.sstkit.CombatListener.combatTagged;
 /// Last Edit    3/21/2026
 ///
 
-
-public class HomeCommand implements CommandExecutor, TabCompleter {
+public class SetHomeCommand implements CommandExecutor, TabCompleter {
 
     private final JavaPlugin plugin;
-    public HomeCommand(JavaPlugin plugin) {
+    public SetHomeCommand(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -39,23 +36,24 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
 
         Long lastCombat = combatTagged.get(player.getUniqueId());
         if (lastCombat != null && (System.currentTimeMillis() - lastCombat) < COMBAT_TIME_HOME) {
-            player.sendMessage("§cYou cannot run command /home while in combat!");
+            player.sendMessage("§cYou cannot set your home while in combat!");
             long remainingSeconds = Math.max(0, (COMBAT_TIME_HOME - (System.currentTimeMillis() - lastCombat)) / 1000);
             player.sendMessage("§bYou are detected in combat for another §c" + remainingSeconds + "§b seconds!");
             return true;
         }
 
-        final Location newLocation = plugin.getConfig().getLocation("homes.locations." + player.getName());
-        if (newLocation != null){
-            player.teleport(newLocation);
-            sender.sendMessage("§aTeleported to your home.");
-            console.sendMessage(player.getName() + " teleported to thier home.");
-        } else
-            sender.sendMessage("§cHome location not set!");
+        plugin.getConfig().set("homes.locations." + player.getName(), player.getLocation());
 
+        try {
+            plugin.saveConfig();
+            sender.sendMessage("§aHome location set!");
+            console.sendMessage(player.getName() + " set their home location.");
+        } catch (Exception e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
         return true;
     }
-
 
     @Override
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command,

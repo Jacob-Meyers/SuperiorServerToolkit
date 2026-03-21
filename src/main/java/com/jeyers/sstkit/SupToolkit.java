@@ -54,6 +54,7 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         saveConfig();
 
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new CombatListener(), this);
         getServer().getPluginManager().registerEvents(this, this);
 
         Objects.requireNonNull(
@@ -133,13 +134,17 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         // ALL /tpa COMMANDS ARE IN ONE CLASS BUT HAVE NO ALIASES TO -
         // EACHOTHER TO ALLOW DISABLING OF SPECIFIC TPA COMMANDS IN THE CONFIG.
         Objects.requireNonNull(getCommand("tpa")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpa")).setTabCompleter(this);
-        Objects.requireNonNull(getCommand("tpaccept")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpaccept")).setTabCompleter(this);
-        Objects.requireNonNull(getCommand("tpdecline")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpdecline")).setTabCompleter(this);
+        Objects.requireNonNull(getCommand("tpyes")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpyes")).setTabCompleter(this);
+        Objects.requireNonNull(getCommand("tpno")).setExecutor(new TPACommand()); Objects.requireNonNull(getCommand("tpno")).setTabCompleter(this);
 
-        // PluginCommand cmd = getCommand("warp");
-        // if (cmd != null) {
-        //     cmd.setPermission("none.permission.node");
-        // }
+        Objects.requireNonNull(
+                getCommand("sethome"))
+                .setExecutor(new SetHomeCommand(this));
+                Objects.requireNonNull(getCommand("sethome")).setTabCompleter(this);
+        Objects.requireNonNull(
+                getCommand("home"))
+                .setExecutor(new HomeCommand(this));
+                Objects.requireNonNull(getCommand("home")).setTabCompleter(this);
 
         ConsoleCommandSender console = Bukkit.getConsoleSender();
         List<String> commands = getConfig().getStringList("disabledFeatures.commands");
