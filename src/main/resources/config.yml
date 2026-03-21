@@ -12,6 +12,9 @@ warp:
   opOnlyPerm: false
   warps: {}
 
+homes:
+  locations: {}
+
 disabledFeatures:
   commands:
     #- warp
