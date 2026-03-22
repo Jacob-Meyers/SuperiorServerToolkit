@@ -176,7 +176,7 @@ public final class SupToolkit extends JavaPlugin implements Listener {
                 Objects.requireNonNull(getCommand("tempban")).setTabCompleter(this);
 
         Objects.requireNonNull(getCommand("vote")).setExecutor(new VoteCommand(this));
-            Objects.requireNonNull(getCommand("vote")).setTabCompleter(this);
+                Objects.requireNonNull(getCommand("vote")).setTabCompleter(this);
 
         // ALL /tpa COMMANDS ARE IN ONE CLASS BUT HAVE NO ALIASES TO -
         // EACHOTHER TO ALLOW DISABLING OF SPECIFIC TPA COMMANDS IN THE CONFIG.

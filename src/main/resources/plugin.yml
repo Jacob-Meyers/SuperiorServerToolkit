@@ -132,7 +132,7 @@ commands:
     permission: op.permission.node
     permission-message: "You do not have permission to use this command"
   vote:
-    description: Vote for the server to promote it on server lists
+    description: Vote for the server to promote it on server lists.
     usage: /<command>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"
