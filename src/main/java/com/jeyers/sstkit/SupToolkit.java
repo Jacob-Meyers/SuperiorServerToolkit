@@ -195,6 +195,9 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         Objects.requireNonNull(getCommand("sell")).setExecutor(new SellCommand(this));
                 Objects.requireNonNull(getCommand("sell")).setTabCompleter(this);
 
+        Objects.requireNonNull(getCommand("trade")).setExecutor(new TradeCommand(this));
+                Objects.requireNonNull(getCommand("trade")).setTabCompleter(this);
+
         ConsoleCommandSender console = Bukkit.getConsoleSender();
         List<String> commands = getConfig().getStringList("disabledFeatures.commands");
         for (String command : commands) {

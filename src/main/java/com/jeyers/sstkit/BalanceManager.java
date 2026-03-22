@@ -61,9 +61,7 @@ public class BalanceManager {
 
     }
 
-    public void loadBalance(UUID uuid, double amount) {
-        balances.put(uuid, Math.max(0, amount));
-    }
+    public void loadBalance(UUID uuid, double amount) { balances.put(uuid, Math.max(0, amount)); }
 
     public void unload(UUID uuid) {
         balances.remove(uuid);
@@ -89,7 +87,7 @@ public class BalanceManager {
     }
 
     public double loadFromStorage(UUID uuid) {
-        return plugin.getBalancesConfig().getDouble("balances." + uuid.toString(), 0.0);
+        return plugin.getBalancesConfig().getDouble("balances." + uuid.toString(), plugin.getConfig().getDouble("defaultBalance"));
     }
 
     public static String formatMoney(double amount) {

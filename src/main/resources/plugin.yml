@@ -184,3 +184,9 @@ commands:
     usage: /<command>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"
+  trade:
+    description: Trade command.
+    usage: /<command> <accept_or_player> <money_amount> <requested_item> <item_amount>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+

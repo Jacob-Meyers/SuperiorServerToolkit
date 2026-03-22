@@ -27,6 +27,7 @@ disabledFeatures:
     #- warpcreate
     #- any_sstkit_command
 
+defaultBalance: 300
 sellvalues:
 #  # Iron
 #  iron_ingot: 1
