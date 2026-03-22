@@ -11,7 +11,7 @@ import static com.jeyers.sstkit.KickUntilRestartCommand.permKickListRAMwarn;
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/17/2026
-/// Last Edit    3/19/2026
+/// Last Edit    3/21/2026
 ///
 
 
@@ -24,16 +24,16 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onAsyncPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
-        String uuid = event.getUniqueId().toString();
+        String uuidString = event.getUniqueId().toString();
 
         // Check tempban
-        if (plugin.getConfig().contains("tempbans." + event.getName() + "." + uuid + ".time")) {
-            long unbanTime = plugin.getConfig().getLong("tempbans." + event.getName() + "." + uuid + ".time");
+        if (plugin.getConfig().contains("tempbans." + event.getName() + "." + uuidString + ".time")) {
+            long unbanTime = plugin.getConfig().getLong("tempbans." + event.getName() + "." + uuidString + ".time");
             long now = System.currentTimeMillis();
 
             if (now < unbanTime) {
-                String banReason = plugin.getConfig().getString("tempbans." + event.getName() + "." + uuid + ".reason");
-                String bannedBy = plugin.getConfig().getString("tempbans." + event.getName() + "." + uuid + ".bannedby");
+                String banReason = plugin.getConfig().getString("tempbans." + event.getName() + "." + uuidString + ".reason");
+                String bannedBy = plugin.getConfig().getString("tempbans." + event.getName() + "." + uuidString + ".bannedby");
                 double remainingHours = (unbanTime - now) / (1000.0 * 60 * 60);
 
                 event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED,

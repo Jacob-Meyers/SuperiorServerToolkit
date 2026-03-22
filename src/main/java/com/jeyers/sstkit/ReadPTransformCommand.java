@@ -21,7 +21,7 @@ import static com.jeyers.sstkit.Vector3Data.vector3ToString;
 ///
 /// Created by Jacob Meyers (TeamJEM)
 /// File Created 3/16/2026
-/// Last Edit    3/20/2026
+/// Last Edit    3/21/2026
 ///
 
 
@@ -62,7 +62,7 @@ public class ReadPTransformCommand implements CommandExecutor {
             sender.sendMessage(posMessage);
             sender.sendMessage(rotMessage);
         } else {
-            sender.sendMessage("§cPlayer does not exist or is offline.");
+            sender.sendMessage("§cPlayer not found!");
         }
         return true;
     }

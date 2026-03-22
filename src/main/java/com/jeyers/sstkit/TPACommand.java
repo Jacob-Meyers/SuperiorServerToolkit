@@ -50,7 +50,7 @@ public class TPACommand implements CommandExecutor, TabCompleter {
             }
             Player targetPlayer = Bukkit.getPlayerExact(args[0].toLowerCase());
             if (targetPlayer == null){
-                player.sendMessage("§cPlayer does not exist or is offline.");
+                player.sendMessage("§cPlayer not found!");
                 return true;
             }
 
@@ -96,9 +96,11 @@ public class TPACommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command,
                                       @NonNull String alias, String @NonNull [] args) {
-        List<String> onlinePlayers = Bukkit.getOnlinePlayers().stream()
+        List<String> onlinePlayers = new ArrayList<>(Bukkit.getOnlinePlayers().stream()
                 .map(Player::getName)
-                .toList();
+                .toList());
+
+        onlinePlayers.remove(sender.getName());
 
         if (args.length == 1)
             return onlinePlayers;

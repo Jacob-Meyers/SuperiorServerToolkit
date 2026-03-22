@@ -162,3 +162,25 @@ commands:
     usage: /<command>
     permission: all.permission.node
     permission-message: "You do not have permission to use this command"
+  balance:
+    description: View your balance.
+    usage: /<command>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  addmoney:
+    description: Adds money to a players balance.
+    usage: /<command> <player> <amount>
+    permission: op.permission.node
+    permission-message: "You do not have permission to use this command"
+  pay:
+    description: Adds money to a players balance.
+    aliases: [ pay, paymoney ]
+    usage: /<command> <player> <amount>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
+  sell:
+    description: Sells items in your mainhand if they can be sold.
+    aliases: [ sell, sellitem ]
+    usage: /<command>
+    permission: all.permission.node
+    permission-message: "You do not have permission to use this command"
