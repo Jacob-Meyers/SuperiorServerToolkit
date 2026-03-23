@@ -42,7 +42,7 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage("§cWarps are not setup on this server!");
             return true;
         } else if (plugin.getConfig().getBoolean("warp.opOnlyPerm") && !sender.isOp()){
-            sender.sendMessage("You do not have permission to use this command");
+            sender.sendMessage("§cYou do not have permission to use this command!");
             return true;
         }
 
