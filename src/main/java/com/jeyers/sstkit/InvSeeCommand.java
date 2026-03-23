@@ -35,7 +35,7 @@ public class InvSeeCommand implements CommandExecutor, TabCompleter {
         Player target = Bukkit.getPlayerExact(args[0].toLowerCase());
 
         if (target != null) {
-            if (target.getName().equals(sender.getName())) {
+            if (target.getName().equals(sender.getName()) && !label.equalsIgnoreCase("endersee")) {
                 sender.sendMessage("§c" + label.toLowerCase() + " cannot be used on self.");
                 return true;
             }
