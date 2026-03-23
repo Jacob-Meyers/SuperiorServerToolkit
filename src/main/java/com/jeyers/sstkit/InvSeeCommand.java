@@ -39,7 +39,7 @@ public class InvSeeCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage("§c" + label.toLowerCase() + " cannot be used on self.");
                 return true;
             }
-            if (!label.equalsIgnoreCase("invsee"))
+            if (label.equalsIgnoreCase("invsee"))
                 player.openInventory(target.getInventory());
             else
                 player.openInventory(target.getEnderChest());
