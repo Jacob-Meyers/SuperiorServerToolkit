@@ -8,8 +8,8 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
-import static com.jeyers.sstkit.CombatListener.COMBAT_TIME_HOME;
 import static com.jeyers.sstkit.CombatListener.combatTagged;
+import static com.jeyers.sstkit.SupToolkit.COMBAT_TIME_HOME;
 
 ///
 /// Created by Jacob Meyers (TeamJEM)

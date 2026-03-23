@@ -26,6 +26,10 @@ public final class SupToolkit extends JavaPlugin implements Listener {
     static String serverNameScoreboard;
     static boolean scoreboardEnabled;
 
+    static long COMBAT_TIME_TPA;
+    static long COMBAT_TIME_HOME;
+    static long COMBAT_TIME_WARP;
+
     public final static List<String> commandList = new ArrayList<>(Arrays.asList(
             "sstkitcommands",
             "sstkitreload / sstkit / reloadsstkit",
@@ -128,6 +132,9 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         CURRENT_VERSION_NUMBER = getDescription().getVersion();
         serverNameScoreboard = getConfig().getString("scoreboard.serverName");
         scoreboardEnabled = getConfig().getBoolean("scoreboard.show");
+        COMBAT_TIME_TPA = getConfig().getInt("tpa.pvpTimer")* 1000L;
+        COMBAT_TIME_WARP = getConfig().getInt("warp.pvpTimer")* 1000L;
+        COMBAT_TIME_HOME = getConfig().getInt("home.pvpTimer")* 1000L;
 
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
         getServer().getPluginManager().registerEvents(new CombatListener(), this);

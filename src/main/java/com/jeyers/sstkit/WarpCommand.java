@@ -13,8 +13,8 @@ import org.jspecify.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jeyers.sstkit.CombatListener.COMBAT_TIME;
 import static com.jeyers.sstkit.CombatListener.combatTagged;
+import static com.jeyers.sstkit.SupToolkit.COMBAT_TIME_WARP;
 
 ///
 /// Created by Jacob Meyers (TeamJEM)
@@ -47,9 +47,9 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
         }
 
         Long lastCombat = combatTagged.get(player.getUniqueId());
-        if (lastCombat != null && (System.currentTimeMillis() - lastCombat) < COMBAT_TIME) {
+        if (lastCombat != null && (System.currentTimeMillis() - lastCombat) < COMBAT_TIME_WARP) {
             player.sendMessage("§cYou cannot warp while in combat!");
-            long remainingSeconds = Math.max(0, (COMBAT_TIME - (System.currentTimeMillis() - lastCombat)) / 1000);
+            long remainingSeconds = Math.max(0, (COMBAT_TIME_WARP - (System.currentTimeMillis() - lastCombat)) / 1000);
             player.sendMessage("§bYou are detected in combat for another §c" + remainingSeconds + "§b seconds!");
             return true;
         }

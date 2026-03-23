@@ -14,9 +14,14 @@ playerlist:
 warp:
   setup: false
   opOnlyPerm: false
+  pvpTimer: 10
   warps: {}
 
+tpa:
+  pvpTimer: 10
+
 homes:
+  pvpTimer: 20
   locations: {}
 
 disabledFeatures:

@@ -7,8 +7,8 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
-import static com.jeyers.sstkit.CombatListener.COMBAT_TIME;
 import static com.jeyers.sstkit.CombatListener.combatTagged;
+import static com.jeyers.sstkit.SupToolkit.COMBAT_TIME_TPA;
 
 ///
 /// Created by Jacob Meyers (TeamJEM)
@@ -30,9 +30,9 @@ public class TPACommand implements CommandExecutor, TabCompleter {
             return true;
 
         Long lastCombat = combatTagged.get(player.getUniqueId());
-        if (lastCombat != null && (System.currentTimeMillis() - lastCombat) < COMBAT_TIME) {
+        if (lastCombat != null && (System.currentTimeMillis() - lastCombat) < COMBAT_TIME_TPA) {
             player.sendMessage("§cYou cannot run command /" + label + " while in combat!");
-            long remainingSeconds = Math.max(0, (COMBAT_TIME - (System.currentTimeMillis() - lastCombat)) / 1000);
+            long remainingSeconds = Math.max(0, (COMBAT_TIME_TPA - (System.currentTimeMillis() - lastCombat)) / 1000);
             player.sendMessage("§bYou are detected in combat for another §c" + remainingSeconds + "§b seconds!");
             return true;
         }

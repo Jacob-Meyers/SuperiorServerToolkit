@@ -19,8 +19,6 @@ import java.util.UUID;
 
 public class CombatListener implements Listener {
     static final Map<UUID, Long> combatTagged = new HashMap<>();
-    static final long COMBAT_TIME = 10000; // in ms
-    static final long COMBAT_TIME_HOME = 20000; // in ms
 
     @EventHandler
     public void onDamage(EntityDamageEvent event) {
