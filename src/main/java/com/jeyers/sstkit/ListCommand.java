@@ -33,12 +33,16 @@ public class ListCommand implements CommandExecutor {
                 .toList();
 
         if (plugin.getConfig().getBoolean("playerlist.opOnlyPerm") && !sender.isOp()){
-            sender.sendMessage("You do not have permission to use this command");
+            sender.sendMessage("§cYou do not have permission to use this command");
             return true;
         }
 
-        String result = String.join(",\n   ", onlinePlayers);
-        sender.sendMessage("Online Players:\n   " + result);
+        if (!onlinePlayers.isEmpty()) {
+            String result = String.join(",\n   ", onlinePlayers);
+            sender.sendMessage("§ePlayer Count:"+onlinePlayers.size()+"\n§bOnline Players:\n   " + result);
+        } else
+            sender.sendMessage("§cThere are no players online");
+
 
         return true;
     }
