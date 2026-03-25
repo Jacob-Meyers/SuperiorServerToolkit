@@ -1,6 +1,7 @@
 package com.jeyers.sstkit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -9,7 +10,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.*;
 
 import static com.jeyers.sstkit.CombatListener.combatTagged;
-import static com.jeyers.sstkit.SupToolkit.COMBAT_TIME_HOME;
+import static com.jeyers.sstkit.SupToolkit.*;
 
 ///
 /// Created by Jacob Meyers (TeamJEM)
@@ -35,6 +36,10 @@ public class SetHomeCommand implements CommandExecutor, TabCompleter {
         ConsoleCommandSender console = Bukkit.getConsoleSender();
 
         Long lastCombat = combatTagged.get(player.getUniqueId());
+        if (player.getWorld().getEnvironment() == World.Environment.NORMAL && (Math.abs(player.getLocation().getBlockX()) < USE_DIAMETER_HOME/2 && Math.abs(player.getLocation().getBlockZ()) < USE_DIAMETER_HOME/2)) {
+            player.sendMessage("§eYou are not allowed to use /sethome while in the "+USE_DIAMETER_HOME+"x"+USE_DIAMETER_HOME+" block overworld spawn area!");
+            return true;
+        }
         if (lastCombat != null && (System.currentTimeMillis() - lastCombat) < COMBAT_TIME_HOME) {
             player.sendMessage("§cYou cannot set your home while in combat!");
             long remainingSeconds = Math.max(0, (COMBAT_TIME_HOME - (System.currentTimeMillis() - lastCombat)) / 1000);
@@ -42,7 +47,7 @@ public class SetHomeCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        plugin.getConfig().set("homes.locations." + player.getName(), player.getLocation());
+        plugin.getConfig().set("home.locations." + player.getName(), player.getLocation());
 
         try {
             plugin.saveConfig();

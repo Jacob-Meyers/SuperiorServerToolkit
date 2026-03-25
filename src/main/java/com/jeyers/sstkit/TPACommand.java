@@ -1,6 +1,7 @@
 package com.jeyers.sstkit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jspecify.annotations.NonNull;
@@ -9,6 +10,7 @@ import java.util.*;
 
 import static com.jeyers.sstkit.CombatListener.combatTagged;
 import static com.jeyers.sstkit.SupToolkit.COMBAT_TIME_TPA;
+import static com.jeyers.sstkit.SupToolkit.USE_DIAMETER_TPA;
 
 ///
 /// Created by Jacob Meyers (TeamJEM)
@@ -42,6 +44,10 @@ public class TPACommand implements CommandExecutor, TabCompleter {
             String senderName = player.getName();
             if (tpaCommandCache.containsKey(senderName)) {
                 player.sendMessage("§cAlready sent a /tpa request to a player, use /tpacancel to cancel the request.");
+                return true;
+            }
+            if (player.getWorld().getEnvironment() == World.Environment.NORMAL && (Math.abs(player.getLocation().getBlockX()) < USE_DIAMETER_TPA/2 && Math.abs(player.getLocation().getBlockZ()) < USE_DIAMETER_TPA/2)) {
+                player.sendMessage("§eYou are not allowed to tpa while in the "+USE_DIAMETER_TPA+"x"+USE_DIAMETER_TPA+" block overworld spawn area!");
                 return true;
             }
             if (senderName.equalsIgnoreCase(args[0])) {

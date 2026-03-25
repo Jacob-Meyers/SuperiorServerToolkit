@@ -18,11 +18,20 @@ warp:
   warps: {}
 
 tpa:
+  useDiameter: 5000
   pvpTimer: 10
 
-homes:
+home:
+  useDiameter: 5000
   pvpTimer: 20
   locations: {}
+
+supporter-chat:
+  format: '<{playerName}> &a'
+  players:
+#    - 8e29f598-ac83-3b40-87d8-78562725aa3b TeamJEM
+    - playerUUID # player 1
+    - playerUUID # player 2
 
 disabledFeatures:
   commands:

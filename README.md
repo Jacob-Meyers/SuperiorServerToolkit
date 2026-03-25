@@ -27,7 +27,7 @@ warp:
   opOnlyPerm: false
   warps: {}
 
-homes:
+home:
   locations: {}
 
 disabledFeatures:

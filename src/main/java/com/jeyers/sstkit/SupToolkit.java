@@ -26,10 +26,6 @@ public final class SupToolkit extends JavaPlugin implements Listener {
     static String serverNameScoreboard;
     static boolean scoreboardEnabled;
 
-    static long COMBAT_TIME_TPA;
-    static long COMBAT_TIME_HOME;
-    static long COMBAT_TIME_WARP;
-
     public final static List<String> commandList = new ArrayList<>(Arrays.asList(
             "sstkitcommands",
             "sstkitreload / sstkit / reloadsstkit",
@@ -115,6 +111,13 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         balanceManager.unload(uuid);
     }
 
+
+    static long COMBAT_TIME_TPA;
+    static long COMBAT_TIME_HOME;
+    static long COMBAT_TIME_WARP;
+    static int USE_DIAMETER_TPA;
+    static int USE_DIAMETER_HOME;
+
     @SuppressWarnings("deprecation")
     @Override
     public void onEnable() {
@@ -129,12 +132,15 @@ public final class SupToolkit extends JavaPlugin implements Listener {
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
         saveConfig();
+        getServer().getPluginManager().registerEvents(new ChatListener(this), this);
         CURRENT_VERSION_NUMBER = getDescription().getVersion();
         serverNameScoreboard = getConfig().getString("scoreboard.serverName");
         scoreboardEnabled = getConfig().getBoolean("scoreboard.show");
         COMBAT_TIME_TPA = getConfig().getInt("tpa.pvpTimer")* 1000L;
         COMBAT_TIME_WARP = getConfig().getInt("warp.pvpTimer")* 1000L;
         COMBAT_TIME_HOME = getConfig().getInt("home.pvpTimer")* 1000L;
+        USE_DIAMETER_TPA = getConfig().getInt("tpa.useDiameter");
+        USE_DIAMETER_HOME = getConfig().getInt("home.useDiameter");
 
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
         getServer().getPluginManager().registerEvents(new CombatListener(), this);
