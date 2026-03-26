@@ -18,10 +18,12 @@ warp:
   warps: {}
 
 tpa:
+  # useDiameter/2 = the minimum +- distance in the x and/or z position the command can be used
   useDiameter: 5000
   pvpTimer: 10
 
 home:
+  # useDiameter/2 = the minimum +- distance in the x and/or z position the command can be used
   useDiameter: 5000
   pvpTimer: 20
   locations: {}
