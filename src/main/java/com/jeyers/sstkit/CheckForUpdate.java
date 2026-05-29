@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import com.google.gson.Gson;
 import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class CheckForUpdate {
     }
 
     public static modrinthGETinfo checkForUpdate() throws Exception {
-        String minecraftVersion = Bukkit.getBukkitVersion().split("-")[0];
+        String minecraftVersion = Bukkit.getBukkitVersion().split("-")[0].split(".b")[0];
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -40,6 +41,9 @@ public class CheckForUpdate {
                 .header("User-Agent", "sstkit") // Modrinth requires this thingy
                 .GET()
                 .build();
+
+        ConsoleCommandSender console = Bukkit.getConsoleSender();
+        console.sendMessage("https://api.modrinth.com/v2/project/"+MODRINTH_PROJECT_ID+"/version?game_versions=[%22"+minecraftVersion+"%22]");
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
