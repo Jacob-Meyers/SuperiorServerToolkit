@@ -32,7 +32,8 @@ public class HealCommand implements CommandExecutor, TabCompleter {
             return true;
         }
         if (isInteger(args[1])) {
-            target.heal(Integer.parseInt(args[1]));
+            double maxHealth = target.getAttribute(org.bukkit.attribute.Attribute.GENERIC_MAX_HEALTH).getValue();
+            target.setHealth(maxHealth);
             sender.sendMessage("§aHealed " + target.getName() + " by " + args[1] + " health." +
                     "\n" + target.getName() + " now has " + target.getHealth() + " health.");
         }

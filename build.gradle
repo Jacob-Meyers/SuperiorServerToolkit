@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.jeyers'
-version = '1.1'
+version = '1.2'
 
 repositories {
     mavenCentral()
@@ -16,48 +16,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:26.1.2.build.+")
-    // Gson for JSON parsing
+    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
     implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'net.kyori:adventure-api:4.17.0'  // Adventure API to be shaded
-}
-
-shadowJar {
-    archiveClassifier.set('') // Replace the normal jar
-    relocate('net.kyori.adventure', 'com.jeyers.shaded.adventure')
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs << "-Xlint:deprecation"
-}
-
-tasks {
-    runServer {
-        // Configure the Minecraft version for our task.
-        // This is the only required configuration besides applying the plugin.
-        // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("26.1.2")
-    }
-}
-
-def targetJavaVersion = 25
-java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release.set(targetJavaVersion)
-    }
+    implementation 'net.kyori:adventure-api:4.17.0'
+    compileOnly 'org.jspecify:jspecify:1.0.0'
 }
 
 processResources {
@@ -66,5 +28,61 @@ processResources {
     filteringCharset 'UTF-8'
     filesMatching('plugin.yml') {
         expand props
+    }
+}
+
+def createVersionJar(String versionSuffix, int javaVersion) {
+    def sourceSetName = "java${javaVersion}"
+
+    sourceSets {
+        create(sourceSetName) {
+            java.srcDirs = [file("src/main/java")]
+            resources.srcDirs = [file("src/main/resources")]
+        }
+    }
+
+    configurations.named("${sourceSetName}CompileOnly") {
+        extendsFrom configurations.compileOnly
+    }
+    configurations.named("${sourceSetName}Implementation") {
+        extendsFrom configurations.implementation
+    }
+
+    tasks.named("compile${sourceSetName.capitalize()}Java", JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.release.set(javaVersion)
+        options.compilerArgs << "-Xlint:deprecation"
+
+        // Explicitly map Java toolchain matching the target version
+        javaCompiler = javaToolchains.compilerFor {
+            languageVersion = JavaLanguageVersion.of(javaVersion)
+        }
+    }
+
+    return tasks.register("shadowJar${versionSuffix}", com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
+        dependsOn tasks.named("processResources")
+        from sourceSets.named(sourceSetName).get().output
+        configurations = [project.configurations.named("${sourceSetName}RuntimeClasspath").get()]
+
+        archiveBaseName.set("LobbyNoData")
+        archiveClassifier.set(versionSuffix)
+        destinationDirectory.set(layout.buildDirectory.dir("out-jars"))
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+        relocate('net.kyori.adventure', 'com.jeyers.shaded.adventure')
+    }
+}
+
+def jar17 = createVersionJar("Java17", 17)
+def jar21 = createVersionJar("Java21", 21)
+def jar25 = createVersionJar("Java25", 25)
+
+tasks.build {
+    dependsOn(jar17, jar21, jar25)
+}
+
+tasks {
+    runServer {
+        minecraftVersion("1.20.1")
     }
 }
