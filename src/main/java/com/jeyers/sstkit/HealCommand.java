@@ -1,6 +1,7 @@
 package com.jeyers.sstkit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,6 +11,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 ///
 /// Created by Jacob Meyers (TeamJEM)
@@ -32,8 +34,9 @@ public class HealCommand implements CommandExecutor, TabCompleter {
             return true;
         }
         if (isInteger(args[1])) {
-            double maxHealth = target.getAttribute(org.bukkit.attribute.Attribute.GENERIC_MAX_HEALTH).getValue();
-            target.setHealth(maxHealth);
+            double amount = Double.parseDouble(args[1]);
+            double maxHealth = Objects.requireNonNull(target.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue();
+            target.setHealth(Math.min(maxHealth, target.getHealth() + amount));
             sender.sendMessage("§aHealed " + target.getName() + " by " + args[1] + " health." +
                     "\n" + target.getName() + " now has " + target.getHealth() + " health.");
         }

@@ -64,7 +64,7 @@ def createVersionJar(String versionSuffix, int javaVersion) {
         from sourceSets.named(sourceSetName).get().output
         configurations = [project.configurations.named("${sourceSetName}RuntimeClasspath").get()]
 
-        archiveBaseName.set("LobbyNoData")
+        archiveBaseName.set("Superior Server Toolkit")
         archiveClassifier.set(versionSuffix)
         destinationDirectory.set(layout.buildDirectory.dir("out-jars"))
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -83,6 +83,6 @@ tasks.build {
 
 tasks {
     runServer {
-        minecraftVersion("1.20.1")
+        minecraftVersion("1.18")
     }
 }
